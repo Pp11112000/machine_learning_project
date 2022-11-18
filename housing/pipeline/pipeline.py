@@ -5,7 +5,7 @@ from housing.exception import HousingException
 from housing.entity.artifact_entity import DataIngestionArtifact
 from housing.entity.config_entity import DataIngestionConfig
 from housing.component.data_ingestion import DataIngestion
-import os.sys
+import os,sys
 
 class Pipeline:
 
