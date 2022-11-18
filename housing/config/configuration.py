@@ -21,6 +21,7 @@ class Configuration:
 
     def get_data_ingestion_config(self) -> DataIngestionConfig:
         try:
+            
             artifact_dir = self.training_pipeline_config.artifact_dir
             data_ingestion_artifact_dir = os.path.join(
                 artifact_dir,
@@ -71,7 +72,16 @@ class Configuration:
             raise HousingException(e,sys) from e
 
     def get_data_validation_config(self) -> DataValidationConfig:
-        pass
+        try:
+            
+            schema_file_path = None
+            data_validation_config =  DataValidationConfig(
+                schema_file_path=schema_file_path 
+
+            )
+            return data_validation_config
+        except Exception as e:
+            raise HousingException(e,sys) from e
 
     def get_data_transormation_config(self) -> DataTransformationConfig:
         pass
@@ -85,7 +95,7 @@ class Configuration:
     def get_model_pusher_config(self) -> ModelPusherConfig :
         pass
 
-    def get_training_pipepline_config(self) -> TrainingPipelineConfig:
+    def get_training_pipeline_config(self) -> TrainingPipelineConfig:
         try:
             training_pipeline_config = self.config_info[TRAINING_PIPELINE_CONFIG_KEY]
             artifact_dir = os.path.join(ROOT_DIR,
